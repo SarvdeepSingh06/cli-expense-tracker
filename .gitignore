@@ -1,0 +1,15 @@
+# Local expense data
+expenses.json
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
