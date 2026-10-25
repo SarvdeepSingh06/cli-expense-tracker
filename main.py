@@ -106,7 +106,7 @@ while True:
         while True:
             Date = input("Enter date: ")
             if Date == "":
-                Date = datetime.today().strptime("%d-%m-%Y")
+                Date = date.today().strftime("%d-%m-%Y")
                 break
             else:
                 try:
@@ -181,72 +181,76 @@ while True:
         try:
             with open("expenses.json") as f:
                 x = json.load(f)
+
+            #Initializing variables for Expense Handling
+            total = 0
+            total_amount = 0
+            total_amount_now = 0
+
+            for data in x:
+                total += 1
+                total_amount = total_amount + float(data["Amount"])
+                if data["Date"] == datetime.today().strptime(data["Date"],"%d-%m-%Y") :
+                    total_amount_now = total_amount_now + float(data["Amount"])
+
+            #Fixing avg dividing by 0
+            if total_amount == 0:
+                avg = 0
+            else:
+                avg = total_amount/total
+
+            print("\n=== Expense Summary ===\n")
+            print(f"Total expenses tracked: {total}")
+            print(f"Total Amount recorded: {total_amount}")
+            print(f"Today's total spending: {total_amount_now}")
+            print(f"Overall average spending: {avg}")
+        
+            print("\n--- Category wise Spending ---\n")
+
+            #Initializing variables for category handling
+            category_count_Food = 0
+            category_total_Food = 0
+            category_count_Travel = 0
+            category_total_Travel = 0
+            category_count_Shopping = 0
+            category_total_Shopping = 0
+            category_count_Other = 0
+            category_total_Other = 0
+
+            #Looping for automation of category handling
+            for data in x:
+            
+                if data["Category"] == "Food":
+                    category_count_Food =  category_count_Food + 1
+                    category_total_Food = category_total_Food + data["Amount"]
+                elif data["Category"] == "Travel":
+                    category_count_Travel =  category_count_Travel + 1
+                    category_total_Travel = category_total_Travel + data["Amount"]
+                elif data["Category"] == "Shopping":
+                    category_count_Shopping =  category_count_Shopping + 1
+                    category_total_Shopping = category_total_Shopping + data["Amount"]
+                else :
+                    category_count_Other = category_count_Other + 1
+                    category_total_Other = category_total_Other + data["Amount"]
+
+            print(f"Total expenses tracked as Food: {category_count_Food}")
+            print(f"Total spending on Food: {category_total_Food}")
+            print(f"Total expenses tracked as Travel: {category_count_Travel}")
+            print(f"Total spending on Travel: {category_total_Travel}")
+            print(f"Total expenses tracked as Shopping: {category_count_Shopping}")
+            print(f"Total spending on Shopping: {category_total_Shopping}")
+            print(f"Total expenses tracked as Other: {category_count_Other}")
+            print(f"Total spending on Other (including coustom categories): {category_total_Other}")
+
+            print("\n=======================")
+
         #If file is empty
         except json.decoder.JSONDecodeError:
             print("No value is stored in the memory yet")
         #If file is not found
         except FileNotFoundError:
             print("No file has been initialized")
-
-        #Initializing variables for Expense Handling
-        total = 0
-        total_amount = 0
-        total_amount_now = 0
-
-        for data in x:
-            total += 1
-            total_amount = total_amount + int(data["Amount"])
-            if data["Date"] == datetime.today().strptime(data["Date"],"%d-%m-%Y") :
-                total_amount_now = total_amount_now + int(data["Amount"])
-
-        avg = total_amount/total
-
-        print("\n=== Expense Summary ===\n")
-        print(f"Total expenses tracked: {total}")
-        print(f"Total Amount recorded: {total_amount}")
-        print(f"Today's total spending: {total_amount_now}")
-        print(f"Overall average spending: {avg}")
-        
-        print("\n--- Category wise Spending ---\n")
-
-       
-        #Initializing variables for category handling
-        category_count_Food = 0
-        category_total_Food = 0
-        category_count_Travel = 0
-        category_total_Travel = 0
-        category_count_Shopping = 0
-        category_total_Shopping = 0
-        category_count_Other = 0
-        category_total_Other = 0
-
-         #Looping for automation of category handling
-        for data in x:
             
-            if data["Category"] == "Food":
-                category_count_Food =  category_count_Food + 1
-                category_total_Food = category_total_Food + data["Amount"]
-            elif data["Category"] == "Travel":
-                category_count_Travel =  category_count_Travel + 1
-                category_total_Travel = category_total_Travel + data["Amount"]
-            elif data["Category"] == "Shopping":
-                category_count_Shopping =  category_count_Shopping + 1
-                category_total_Shopping = category_total_Shopping + data["Amount"]
-            else :
-                category_count_Other = category_count_Other + 1
-                category_total_Other = category_total_Other + data["Amount"]
-
-        print(f"Total expenses tracked as Food: {category_count_Food}")
-        print(f"Total spending on Food: {category_total_Food}")
-        print(f"Total expenses tracked as Travel: {category_count_Travel}")
-        print(f"Total spending on Travel: {category_total_Travel}")
-        print(f"Total expenses tracked as Shopping: {category_count_Shopping}")
-        print(f"Total spending on Shopping: {category_total_Shopping}")
-        print(f"Total expenses tracked as Other: {category_count_Other}")
-        print(f"Total spending on Other (including coustom categories): {category_total_Other}")
-
-        print("\n=======================")
-
     #To end programe
     if scan == 5:
         print("\nEnd of the application !\n")
