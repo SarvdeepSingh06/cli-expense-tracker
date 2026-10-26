@@ -187,10 +187,11 @@ while True:
             total_amount = 0
             total_amount_now = 0
 
+            #Expense total for daily and overall
             for data in x:
                 total += 1
                 total_amount = total_amount + float(data["Amount"])
-                if data["Date"] == datetime.today().strptime(data["Date"],"%d-%m-%Y") :
+                if data["Date"] == date.today().strftime("%d-%m-%Y"):
                     total_amount_now = total_amount_now + float(data["Amount"])
 
             #Fixing avg dividing by 0
