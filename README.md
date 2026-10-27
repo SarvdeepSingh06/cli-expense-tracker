@@ -1,6 +1,4 @@
-<img width="453" height="512" alt="Screenshot 2026-10-26 154726" src="https://github.com/user-attachments/assets/1d3aaad2-acd8-4ae0-aed5-16f8c8d57c5f" />
-<img width="1396" height="368" alt="Screenshot 2026-10-26 154958" src="https://github.com/user-attachments/assets/4479263c-96cf-4860-b125-cde4e801d2dc" />
-<img width="562" height="702" alt="Screenshot 2026-10-26 154835" src="https://github.com/user-attachments/assets/aab3ce6a-19e6-4141-8eb1-0819ea05591c" />
+
 # CLI Expense Tracker
 
 A beginner-friendly command-line expense tracker built with Python. It stores expense records in a local JSON file.
@@ -8,10 +6,19 @@ A beginner-friendly command-line expense tracker built with Python. It stores ex
 ## Features
 
 - Add expenses with amount, category, description, and date
+
+<img width="453" height="512" alt="Screenshot 2026-10-26 154726" src="https://github.com/user-attachments/assets/1d3aaad2-acd8-4ae0-aed5-16f8c8d57c5f" />
+
 - View saved expenses
+
+<img width="1396" height="368" alt="Screenshot 2026-10-26 154958" src="https://github.com/user-attachments/assets/4479263c-96cf-4860-b125-cde4e801d2dc" />
+
 - Delete expenses
 - View total and average spending
 - View today's spending
+
+<img width="562" height="702" alt="Screenshot 2026-10-26 154835" src="https://github.com/user-attachments/assets/be203600-4c22-47d6-a9d7-53d6bc12a06e" />
+
 - View category-wise expense statistics
 - Store expense data locally using JSON
 
